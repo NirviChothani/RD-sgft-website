@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sindhu Global Development Foundation</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-color: #9c27b0;
+      --accent-color: #ff7b29;
+      --background-light: #f8f9fa;
+      --background-white: #ffffff;
+      --text-dark: #333;
+      --text-muted: #666;
+      --border-light: #eee;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: var(--background-white);
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 80px 5%;
+      background: linear-gradient(135deg, var(--background-light) 0%, var(--background-white) 100%);
+      min-height: 70vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255, 123, 41, 0.1) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .hero-left {
+      max-width: 50%;
+      z-index: 1;
+    }
+
+    .hero-left h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      color: var(--text-dark);
+    }
+
+    .hero-left .highlight-purple {
+      color: var(--primary-color);
+    }
+
+    .hero-left .highlight-orange {
+      color: var(--accent-color);
+    }
+
+    .hero-left p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 30px;
+      font-weight: 500;
+    }
+
+    .btn-donate {
+      padding: 12px 30px;
+      background-color: var(--accent-color);
+      color: var(--background-white);
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 123, 41, 0.3);
+    }
+
+    .btn-donate:hover {
+      background-color: #e66a20;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 123, 41, 0.4);
+    }
+
+    .hero-right img {
+      max-width: 100%;
+      width: 350px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .hero-right img:hover {
+      transform: scale(1.05);
+    }
+
+    .impact-section {
+      padding: 60px 5%;
+      background: var(--background-white);
+      text-align: center;
+    }
+
+    .impact-stats {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .impact-item {
+      background: var(--primary-color);
+      border-radius: 12px;
+      padding: 25px 15px;
+      width: 280px;
+      color: var(--background-white);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .impact-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(156, 39, 176, 0.3);
+    }
+
+    .impact-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--accent-color);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: var(--background-white);
+      margin: 0 auto 15px;
+    }
+
+    .impact-text h3 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 5px;
+    }
+
+    .impact-text p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .section-contribution {
+      text-align: center;
+      padding: 60px 5%;
+      background-color: var(--background-light);
+    }
+
+    .section-contribution h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 30px;
+    }
+
+    .cards {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      gap: 20px;
+      padding: 15px 0;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .cards::-webkit-scrollbar {
+      display: none;
+    }
+
+    .card {
+      background: var(--background-white);
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      min-width: 280px;
+      flex-shrink: 0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+
+    .card h4 {
+      margin: 15px 10px 8px 10px;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .card .event-summary {
+      margin: 0 10px 10px 10px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .card button {
+      margin: 10px;
+      padding: 8px 15px;
+      background-color: var(--accent-color);
+      color: var(--background-white);
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .card button:hover {
+      background-color: #e66a20;
+    }
+
+    .cards-navigation {
+      position: relative;
+      margin-top: 20px;
+    }
+
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--accent-color);
+      color: var(--background-white);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-arrow:hover {
+      background: #e66a20;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .nav-arrow.left {
+      left: -20px;
+    }
+
+    .nav-arrow.right {
+      right: -20px;
+    }
+
+    .scroll-indicator {
+      text-align: center;
+      margin-top: 15px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* Iframe Popup Styles */
+    #blur-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+      display: none;
+      transition: opacity 0.3s ease;
+    }
+
+    #blur-overlay.active {
+      display: block;
+      opacity: 1;
+    }
+
+    #iframe-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1001;
+      display: none;
+      
+      border-radius: 10px; /* Added for rounded corners */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      width: 90%;
+      max-width: 400px;
+      background: var(--background-white);
+      
+      overflow: hidden; /* Ensures iframe content respects rounded corners */
+    }
+
+    #iframe-container.active {
+      display: block;
+    }
+
+    #iframe-container iframe {
+      width: 100%;
+      height: 400px; /* Adjusted height to fit reduced padding */
+      border: none;
+      scrolling: no;
+    }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 992px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 50px 5%;
+        min-height: auto;
+      }
+
+      .hero-left {
+        max-width: 100%;
+        margin-bottom: 20px;
+        order: 2; /* Text and button appear below image */
+      }
+
+      .hero-right {
+        order: 1; /* Image appears first, below navbar */
+        margin-bottom: 20px;
+      }
+
+      .hero-right img {
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .hero-left h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero-left p {
+        font-size: 1rem;
+      }
+
+      .impact-stats {
+        gap: 15px;
+      }
+
+      .impact-item {
+        width: 100%;
+        max-width: 280px;
+      }
+
+      .nav-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+      }
+
+      .nav-arrow.left {
+        left: -10px;
+      }
+
+      .nav-arrow.right {
+        right: -10px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-left h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-left p {
+        font-size: 0.9rem;
+      }
+
+      .btn-donate {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+      }
+
+      .impact-section {
+        padding: 40px 5%;
+      }
+
+      .impact-item {
+        padding: 20px 10px;
+      }
+
+      .impact-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+      }
+
+      .impact-text h3 {
+        font-size: 1.6rem;
+      }
+
+      .section-contribution {
+        padding: 40px 5%;
+      }
+
+      .section-contribution h2 {
+        font-size: 1.8rem;
+      }
+
+      .card {
+        min-width: 240px;
+      }
+
+      .card img {
+        height: 180px;
+      }
+
+      .card h4 {
+        font-size: 1.2rem;
+      }
+
+      .card .event-summary {
+        font-size: 0.8rem;
+      }
+
+      .nav-arrow {
+        display: none;
+      }
+
+      .cards {
+        padding: 15px 5px;
+      }
+
+      .hero-right img {
+        max-width: 250px;
+      }
+
+      #iframe-container {
+        max-width: 340px; /* Slightly smaller for mobile */
+      }
+
+      #iframe-container iframe {
+        height: 360px; /* Adjusted for mobile */
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Include Navbar -->
+  <div id="navbar"></div>
+
+  <!-- Blur Overlay for Iframe Popup -->
+  <div id="blur-overlay"></div>
+  <!-- Iframe Container -->
+  <div id="iframe-container"></div>
+
+  <section class="hero">
+    <div class="hero-left">
+      <h1><span class="highlight-purple">Sindhu</span> <span class="highlight-orange">Global</span><br>
+        Development <span class="highlight-orange">Foundation</span></h1>
+      <p>Together for Change, United for Impact.</p>
+      <button class="btn-donate" onclick="window.location.href='donation.html'">Donate Now</button>
+    </div>
+    <div class="hero-right">
+      <img src="images/sgdf-logo.png" alt="Happy children">
+    </div>
+  </section>
+
+  <section class="impact-section">
+    <div class="impact-stats">
+      <div class="impact-item">
+        <div class="impact-icon">
+          <i class="fas fa-rupee-sign"></i>
+        </div>
+        <div class="impact-text">
+          <h3 class="impact-number" data-target="1000000">0</h3>
+          <p>Together, We've Raised</p>
+        </div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="impact-text">
+          <h3 class="impact-number" data-target="50000">0</h3>
+          <p>People Benefited!</p>
+        </div>
+      </div>
+      <div class="impact-item">
+        <div class="impact-icon">
+          <i class="fas fa-handshake"></i>
+        </div>
+        <div class="impact-text">
+          <h3 class="impact-number" data-target="100">0</h3>
+          <p>NGOs Connected and Growing!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-contribution">
+    <h2>Contribute to Our Causes</h2>
+    <div class="cards-navigation">
+      <button class="nav-arrow left" id="scrollLeft">‹</button>
+      <div class="cards" id="event-cards-container"></div>
+      <button class="nav-arrow right" id="scrollRight">›</button>
+    </div>
+    <div class="scroll-indicator">
+      <i class="fas fa-hand-pointer"></i> Swipe to explore more events
+    </div>
+  </section>
+
+  <div class="modal fade" id="event-popup" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content popup-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="popup-event-name">Event Title</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Date:</strong> <span id="popup-event-date"></span></p>
+          <p><strong>People Benefitted:</strong> <span id="popup-event-benefitted"></span></p>
+          <p><strong>Donation:</strong> <span id="popup-event-donation"></span></p>
+          <p><strong>Summary:</strong></p>
+          <p id="popup-event-summary"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include Footer -->
+  <div id="footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDkLmo4Vf-1U8Vl_grn2waMigYCyMj1BaU",
+      authDomain: "formtestsgft.firebaseapp.com",
+      databaseURL: "https://formtestsgft-default-rtdb.firebaseio.com",
+      projectId: "formtestsgft",
+      storageBucket: "formtestsgft.appspot.com",
+      messagingSenderId: "688396867961",
+      appId: "1:688396867961:web:8cc2136b755be21f4f77a8"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    let inkindItemsCache = {};
+
+    // Load navbar
+    fetch('navbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('navbar').innerHTML = data;
+        // Highlight the active nav link
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('.nav-link').forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+    // Load footer
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer').innerHTML = data;
+      });
+
+    function fetchInkindItems() {
+      const inkindRef = ref(database, 'inkindItems');
+      get(inkindRef).then((snapshot) => {
+        const items = snapshot.val() || [];
+        inkindItemsCache = {};
+        if (Array.isArray(items)) {
+          items.forEach((item, index) => {
+            let itemName = item.name || item;
+            if (typeof itemName === 'string') {
+              inkindItemsCache[index] = itemName;
+            }
+          });
+        } else {
+          for (let id in items) {
+            let itemName = items[id].name || items[id];
+            if (typeof itemName === 'string') {
+              inkindItemsCache[id] = itemName;
+            }
+          }
+        }
+        console.log('In-kind items cached:', inkindItemsCache);
+        loadEventCards();
+      }).catch((error) => {
+        console.error('Error fetching in-kind items:', error);
+        loadEventCards();
+      });
+    }
+
+    function loadEventCards() {
+      const eventsRef = ref(database, 'events');
+      get(eventsRef).then((snapshot) => {
+        if (!snapshot.exists()) {
+          console.log("No events data available");
+          document.getElementById('event-cards-container').innerHTML = '<p>No events available.</p>';
+          return;
+        }
+        const eventsData = snapshot.val();
+        const container = document.getElementById('event-cards-container');
+        if (!container) {
+          console.error("Event cards container not found");
+          return;
+        }
+        container.innerHTML = '';
+
+        for (const eventId in eventsData) {
+          const event = eventsData[eventId];
+          const card = document.createElement('div');
+          card.classList.add('card');
+
+          const img = document.createElement('img');
+          img.src = event.imageUrl || '';
+          img.alt = event.title || 'Event Image';
+          img.onerror = function() {
+            this.src = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="280" height="200"><rect width="280" height="200" fill="%23f0f0f0"/><text x="140" y="100" text-anchor="middle" fill="%23999">Image not found</text></svg>';
+          };
+
+          const eventName = document.createElement('h4');
+          eventName.innerText = event.title || 'Untitled Event';
+
+          const eventSummary = document.createElement('p');
+          eventSummary.classList.add('event-summary');
+          eventSummary.innerText = event.summary || 'No summary available';
+
+          const button = document.createElement('button');
+          button.innerText = 'Explore Now';
+          button.onclick = () => showPopup(event);
+
+          card.appendChild(img);
+          card.appendChild(eventName);
+          card.appendChild(eventSummary);
+          card.appendChild(button);
+
+          container.appendChild(card);
+        }
+
+        initializeScrollFunctionality();
+      }).catch((error) => {
+        console.error("Error loading events:", error);
+        document.getElementById('event-cards-container').innerHTML = '<p>Error loading events.</p>';
+      });
+    }
+
+    function initializeScrollFunctionality() {
+      const container = document.getElementById('event-cards-container');
+      const leftArrow = document.getElementById('scrollLeft');
+      const rightArrow = document.getElementById('scrollRight');
+
+      if (!container || !leftArrow || !rightArrow) {
+        console.error("Scroll elements not found");
+        return;
+      }
+
+      leftArrow.addEventListener('click', () => {
+        container.scrollBy({ left: -300, behavior: 'smooth' });
+      });
+
+      rightArrow.addEventListener('click', () => {
+        container.scrollBy({ left: 300, behavior: 'smooth' });
+      });
+
+      let startX = 0;
+      let scrollLeft = 0;
+      let isDown = false;
+
+      container.addEventListener('mousedown', (e) => {
+        isDown = true;
+        container.style.cursor = 'grabbing';
+        startX = e.pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+      });
+
+      container.addEventListener('mouseleave', () => {
+        isDown = false;
+        container.style.cursor = 'grab';
+      });
+
+      container.addEventListener('mouseup', () => {
+        isDown = false;
+        container.style.cursor = 'grab';
+      });
+
+      container.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - container.offsetLeft;
+        const walk = (x - startX) * 2;
+        container.scrollLeft = scrollLeft - walk;
+      });
+
+      let touchStartX = 0;
+      let touchScrollLeft = 0;
+
+      container.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchScrollLeft = container.scrollLeft;
+      });
+
+      container.addEventListener('touchmove', (e) => {
+        if (!touchStartX) return;
+        const touchCurrentX = e.touches[0].clientX;
+        const touchDiff = touchStartX - touchCurrentX;
+        container.scrollLeft = touchScrollLeft + touchDiff;
+      });
+
+      container.addEventListener('touchend', () => {
+        touchStartX = 0;
+      });
+
+      container.style.cursor = 'grab';
+    }
+
+    function setCookie(name, value, days) {
+      let expires = "";
+      if (days) {
+        const date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/";
+      console.log('Cookie set:', name + '=' + value);
+    }
+
+    function getCookie(name) {
+      const value = "; " + document.cookie;
+      const parts = value.split("; " + name + "=");
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return null;
+    }
+
+    function deleteCookie(name) {
+      document.cookie = name + '=; Max-Age=0; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    }
+
+    function showPopup(event) {
+      document.getElementById('popup-event-name').innerText = event.title || 'Untitled Event';
+      document.getElementById('popup-event-date').innerText = event.date || 'N/A';
+      document.getElementById('popup-event-benefitted').innerText = event.peopleBenefitted || 0;
+      document.getElementById('popup-event-summary').innerText = event.summary || 'No summary available';
+
+      const donationElement = document.getElementById('popup-event-donation');
+      if (event.donations) {
+        if (event.donations.type === 'money') {
+          donationElement.innerText = `₹${event.donations.amount || 0} (${event.donations.subType || 'N/A'})`;
+        } else if (event.donations.type === 'inkind') {
+          const itemName = inkindItemsCache[event.donations.itemId] || 'Unknown Item';
+          donationElement.innerText = `${event.donations.quantity || 0} x ${itemName}`;
+        } else {
+          donationElement.innerText = 'N/A';
+        }
+      } else {
+        donationElement.innerText = 'N/A';
+      }
+
+      const modal = new bootstrap.Modal(document.getElementById('event-popup'));
+      modal.show();
+    }
+
+    window.handleDonateNow = function() {
+      window.location.href = 'donation.html';
+    };
+
+    function updateUIForLoginState(isLoggedIn) {
+      const signInBtn = document.querySelector('.btn-signin');
+      const logoutBtn = document.getElementById('logoutBtn');
+
+      if (isLoggedIn) {
+        if (signInBtn) signInBtn.style.display = 'none';
+        if (logoutBtn) logoutBtn.style.display = 'inline-block';
+      } else {
+        if (signInBtn) signInBtn.style.display = 'inline-block';
+        if (logoutBtn) logoutBtn.style.display = 'none';
+      }
+    }
+
+    function animateImpactCounters() {
+      const counters = document.querySelectorAll('.impact-number');
+      const speed = 200;
+
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const increment = target / speed;
+
+        function updateCount() {
+          const current = +counter.innerText.replace(/[^0-9]/g, '');
+          if (current < target) {
+            counter.innerText = Math.ceil(current + increment).toLocaleString('en-IN');
+            setTimeout(updateCount, 20);
+          } else {
+            if (counter.getAttribute('data-target') === '1000000') {
+              counter.innerText = '₹' + target.toLocaleString('en-IN') + '+';
+            } else {
+              counter.innerText = target.toLocaleString('en-IN') + '+';
+            }
+          }
+        }
+
+        updateCount();
+      });
+    }
+
+    function initImpactAnimation() {
+      const impactSection = document.querySelector('.impact-section');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            animateImpactCounters();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.5
+      });
+
+      if (impactSection) {
+        observer.observe(impactSection);
+      }
+    }
+
+    function handleLogout() {
+      deleteCookie('isLoggedIn');
+      deleteCookie('userEmail');
+      updateUIForLoginState(false);
+      location.reload();
+    }
+
+    window.onload = function() {
+      const isLoggedIn = getCookie('isLoggedIn') === 'true';
+      if (isLoggedIn) {
+        window.location.href = 'userDash.html';
+        return;
+      }
+      fetchInkindItems();
+      initImpactAnimation();
+      updateUIForLoginState(isLoggedIn);
+      const logoutBtn = document.getElementById('logoutBtn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', handleLogout);
+      }
+    };
+
+    document.addEventListener("DOMContentLoaded", function () {
+      window.loadAuthIframe = function() {
+        const iframe = document.createElement('iframe');
+        iframe.src = 'authh.html';
+        iframe.style.width = '100%';
+        iframe.style.maxWidth = '400px';
+        iframe.style.height = '400px';
+        iframe.frameBorder = '0';
+        iframe.style.border = 'none';
+        iframe.scrolling = 'no';
+
+        const container = document.getElementById('iframe-container');
+        const blurOverlay = document.getElementById('blur-overlay');
+
+        if (container && blurOverlay) {
+          container.innerHTML = '';
+          container.appendChild(iframe);
+          blurOverlay.classList.add('active');
+          container.classList.add('active');
+
+          window.addEventListener('message', function(event) {
+            if (event.data === 'loginSuccess') {
+              setCookie('isLoggedIn', 'true', 7);
+              blurOverlay.classList.remove('active');
+              container.classList.remove('active');
+              setTimeout(() => {
+                container.innerHTML = '';
+                window.location.href = 'userDash.html';
+              }, 300);
+            }
+          });
+        } else {
+          console.error("Container or blur overlay not found");
+        }
+      };
+
+      window.onclick = function(event) {
+        const iframeContainer = document.getElementById('iframe-container');
+        const blurOverlay = document.getElementById('blur-overlay');
+        if (event.target === blurOverlay) {
+          iframeContainer.innerHTML = '';
+          iframeContainer.classList.remove('active');
+          blurOverlay.classList.remove('active');
+        }
+      };
+    });
+  </script>
+</body>
+</html>
